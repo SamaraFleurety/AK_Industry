@@ -108,6 +108,7 @@
     <Compile Include="GasSystem\Thing\Def\Gas.cs" />
     <Compile Include="GasSystem\Thing\Def\GasDef.cs" />
     <Compile Include="Harmony\PatchMain.cs" />
+    <Compile Include="Module\GasEmitter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

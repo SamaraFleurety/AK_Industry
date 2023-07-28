@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using RimWorld;
 using Verse;
+using AK_Industry.Module;
 
 namespace AK_Industry
 {
@@ -26,9 +27,11 @@ namespace AK_Industry
 			this.updateRegionIntervel--;
 			if (this.updateRegionIntervel <= 0)
 			{
-				this.ScanArea(base.parent.Position, base.parent.Map, this.ExactProps.areaFillRadius);
+				//this.ScanArea(base.parent.Position, base.parent.Map, this.ExactProps.areaFillRadius);
+				affectedCells = MGasEmitter.ScanArea(base.parent.Position, base.parent.Map, this.ExactProps.areaFillRadius);
 			}
-			this.DoSpawnCycle(this.affectedCells);
+			MGasEmitter.DoSpawnCycle(this.affectedCells, ExactProps.gasType, ExactProps.countOfThingsToSpawnPerCell, base.parent.Map);
+			//this.DoSpawnCycle(this.affectedCells);
 		}
 		public override void CompTickLong()
 		{
@@ -45,69 +48,8 @@ namespace AK_Industry
 			this.DoSpawnCycle(this.cellsInArea);
 		}*/
 
-		private void DoSpawnCycle(List<IntVec3> affectedCells)
-		{
-			if (affectedCells.Count < 1 || this.ExactProps.gasType == null)
-			{
-				return;
-			}
-			for (int i = 0; i < affectedCells.Count; i++)
-			{
-				Thing thing = ThingMaker.MakeThing(ThingDefOf.Mote_Stun, null);
-				IntVec3 intVec = affectedCells[i];
-				if (!this.DoesCellContain(intVec, base.parent.Map, this.ExactProps.gasType))
-				{
-					thing = ThingMaker.MakeThing(this.ExactProps.gasType, null);
-					thing.stackCount = this.ExactProps.countOfThingsToSpawnPerCell;
-					if (!thing.Spawned)
-					{
-						GenSpawn.Spawn(thing, intVec, base.parent.Map, 0);
-					}
-				}
-			}
-		}
 
-		private bool DoesCellContain(IntVec3 cell, Map map, ThingDef thingToLookFor)
-		{
-			return GridsUtility.GetFirstThing(cell, map, thingToLookFor) != null;
-		}
-
-		private void ScanArea(IntVec3 posistion, Map map, float distance)
-		{
-			this.affectedCells.Clear();
-			if (!GenGrid.InBounds(posistion, map))
-			{
-				return;
-			}
-			IntVec3[] nearLoc = new IntVec3[] { posistion, new IntVec3(posistion.x + 1, posistion.y, posistion.z), new IntVec3(posistion.x - 1, posistion.y, posistion.z), new IntVec3(posistion.x, posistion.y, posistion.z + 1), new IntVec3(posistion.x, posistion.y, posistion.z - 1) };
-			Region region = null;
-			for (int i = 0; i < 5; ++i)
-			{
-				if (nearLoc[i].InBounds(base.parent.Map))
-				{
-					region = GridsUtility.GetRegion(nearLoc[i], map, RegionType.Set_Passable);
-					if (region != null) goto Find_Region;
-				}
-			}
-			if (region == null)
-			{
-				return;
-			}
-
-		Find_Region:
-			RegionTraverser.BreadthFirstTraverse(region, (Region from, Region traverseRegion) => traverseRegion.door == null, delegate
-				(Region targetRegion)
-			{
-				foreach (IntVec3 item in targetRegion.Cells)
-				{
-					if (item.InHorDistOf(posistion, this.ExactProps.areaFillRadius))
-					{
-						this.affectedCells.Add(item);
-					}
-				}
-				return false;
-			}, 16, RegionType.Set_Passable);
-		}
+		
 
 		private List<IntVec3> affectedCells = new List<IntVec3>();
 
