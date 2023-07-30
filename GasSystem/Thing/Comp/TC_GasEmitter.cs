@@ -27,15 +27,19 @@ namespace AK_Industry
 			this.updateRegionIntervel--;
 			if (this.updateRegionIntervel <= 0)
 			{
+				updateRegionIntervel = ExactProps.intervel;
+				if (lowerThanHPThreshold())
+                {
+					affectedCells = MGasEmitter.ScanArea(base.parent.Position, base.parent.Map, this.ExactProps.areaFillRadius);
+					MGasEmitter.DoSpawnCycle(this.affectedCells, ExactProps.gasType, ExactProps.countOfThingsToSpawnPerCell, base.parent.Map);
+				}
 				//this.ScanArea(base.parent.Position, base.parent.Map, this.ExactProps.areaFillRadius);
-				affectedCells = MGasEmitter.ScanArea(base.parent.Position, base.parent.Map, this.ExactProps.areaFillRadius);
 			}
-			MGasEmitter.DoSpawnCycle(this.affectedCells, ExactProps.gasType, ExactProps.countOfThingsToSpawnPerCell, base.parent.Map);
 			//this.DoSpawnCycle(this.affectedCells);
 		}
 		public override void CompTickLong()
 		{
-			Log.Error("源石尘组件不应该使用long tickertype");
+			CompTickRare();
 		}
 		/*private void PulseThisTick()
 		{
@@ -48,7 +52,11 @@ namespace AK_Industry
 			this.DoSpawnCycle(this.cellsInArea);
 		}*/
 
-
+		public bool lowerThanHPThreshold()
+        {
+			if ((float)parent.HitPoints / (float)parent.MaxHitPoints <= ExactProps.HPThreshold) return true;
+			return false;
+        }
 		
 
 		private List<IntVec3> affectedCells = new List<IntVec3>();

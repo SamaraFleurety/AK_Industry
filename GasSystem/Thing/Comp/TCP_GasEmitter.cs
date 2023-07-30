@@ -9,7 +9,7 @@ namespace AK_Industry
 {
 	public class TCP_GasEmitter : CompProperties
 	{
-		public int ticksBetweenPulse = 120;
+		public int intervel = 1;
 
 		public float areaFillRadius = 3.5f;
 
@@ -20,6 +20,8 @@ namespace AK_Industry
 		public float fuelCostPerSpawn;
 
 		public bool addToExsistingStacks;
+
+		public float HPThreshold = 10f;
 
 		public TCP_GasEmitter()
 		{

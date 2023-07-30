@@ -48,7 +48,7 @@ namespace AK_Industry.Module
 
 		public static void DoSpawnCycle(List<IntVec3> affectedCells, ThingDef gasType, int spawnPerCell ,Map map)
 		{
-			if (affectedCells.Count < 1 || gasType == null)
+			if (affectedCells == null && affectedCells.Count < 1 || gasType == null)
 			{
 				return;
 			}
