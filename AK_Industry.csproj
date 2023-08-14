@@ -108,11 +108,18 @@
     <Compile Include="GasSystem\Thing\Def\Gas.cs" />
     <Compile Include="GasSystem\Thing\Def\GasDef.cs" />
     <Compile Include="Harmony\PatchMain.cs" />
+    <Compile Include="MathFunction\Func_OrgBloodCauseCrystal.cs" />
+    <Compile Include="MathFunction\Func_OrgDustToOrgBlood.cs" />
+    <Compile Include="MathFunction\MathFunctionBase.cs" />
     <Compile Include="Module\GasEmitter.cs" />
     <Compile Include="Oripathy\Complication\HC_DazeMe.cs" />
     <Compile Include="Oripathy\Complication\HC_DecreaseSkills.cs" />
+    <Compile Include="Oripathy\HediffComp\HC_AddHediff.cs" />
+    <Compile Include="Oripathy\HediffComp\HC_OripathyInfo.cs" />
+    <Compile Include="Oripathy\HediffComp\HC_RandAddHediff.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ThingComp\TCP_ReactorOverride.cs" />
+    <Compile Include="ThingComp\TC_OripathyMonitor.cs" />
+    <Compile Include="ThingComp\TC_ReactorOverride.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="HediffComp\" />
