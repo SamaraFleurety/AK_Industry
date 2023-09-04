@@ -34,7 +34,8 @@
     <Reference Include="0Harmony">
       <HintPath>..\..\AK_DLL\AK_DLL\bin\Debug\0Harmony.dll</HintPath>
     </Reference>
-    <Reference Include="AK_DLL">
+    <Reference Include="AK_DLL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\AK_DLL\AK_DLL\bin\Debug\AK_DLL.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp">
@@ -103,6 +104,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AI\JobDriver\JobDriver_CleanOrgDust.cs" />
+    <Compile Include="AI\WorkGiver\WorkGiver_CleanOrgDust.cs" />
     <Compile Include="GasSystem\Thing\Comp\TCP_GasEmitter.cs" />
     <Compile Include="GasSystem\Thing\Comp\TC_GasEmitter.cs" />
     <Compile Include="GasSystem\Thing\Def\Gas.cs" />
@@ -115,11 +118,14 @@
     <Compile Include="Oripathy\Complication\HC_DazeMe.cs" />
     <Compile Include="Oripathy\Complication\HC_DecreaseSkills.cs" />
     <Compile Include="Oripathy\HediffComp\HC_AddHediff.cs" />
+    <Compile Include="Oripathy\HediffComp\HC_LatentCrystal.cs" />
     <Compile Include="Oripathy\HediffComp\HC_OripathyInfo.cs" />
     <Compile Include="Oripathy\HediffComp\HC_RandAddHediff.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ThingComp\TC_OripathyMonitor.cs" />
-    <Compile Include="ThingComp\TC_ReactorOverride.cs" />
+    <Compile Include="ThingComp\TC_ReactorOC.cs" />
+    <Compile Include="ThingComp\TC_UseEffect_CleanOrgDust.cs" />
+    <Compile Include="TypeDef.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="HediffComp\" />

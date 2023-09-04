@@ -8,6 +8,10 @@ using Verse;
 
 namespace AK_Industry
 {
+    /// <summary>
+    /// 随机附加Hediff。<para></para>先判定豁免概率(优先使用函数，没有就使用固定概率)
+    /// 若豁免失败就会从hediffStatsSet里面使用加权随机随一个
+    /// </summary>
     public class HCP_RandAddHediff : HediffCompProperties
     {
         public int interval = 1;
@@ -51,7 +55,7 @@ namespace AK_Industry
                 else
                 {
                     MathFunction func = (MathFunction)Activator.CreateInstance(Props.saveChanceByFunc);
-                    Log.Message(func.Value(parent.Severity).ToString());
+                    //Log.Message(func.Value(parent.Severity).ToString());
                     return func.Value(parent.Severity);
                 }
             }
@@ -80,8 +84,8 @@ namespace AK_Industry
                 if (UnityEngine.Random.Range(0f, 1f) <= SaveChance) return;
 
                 HediffStat hediff = HediffStats[AK_Tool.weightArrayRand(weight)];
-                Log.Message("Add " + hediff.hediff.defName + " to " + this.Pawn.Name.ToString());
-                AbilityEffect_AddHediff.AddHediff(this.Pawn, hediff.hediff, hediff.part, hediff.serverity);
+                //Log.Message("Add " + hediff.hediff.defName + " to " + this.Pawn.Name.ToString());
+                AbilityEffect_AddHediff.AddHediff(this.Pawn, hediff.hediff, hediff.part, severity: hediff.serverity);
             }
         }
     }

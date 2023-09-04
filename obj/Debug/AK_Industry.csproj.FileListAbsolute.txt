@@ -47,7 +47,6 @@ C:\Users\Fleurety\Desktop\rw\AK_Industry\AK_Industry\bin\Debug\UnityEngine.VRMod
 C:\Users\Fleurety\Desktop\rw\AK_Industry\AK_Industry\bin\Debug\UnityEngine.WindModule.dll
 C:\Users\Fleurety\Desktop\rw\AK_Industry\AK_Industry\bin\Debug\UnityEngine.XRModule.dll
 C:\Users\Fleurety\Desktop\rw\AK_Industry\AK_Industry\bin\Debug\UnityEngine.SubsystemsModule.dll
-C:\Users\Fleurety\Desktop\rw\AK_Industry\AK_Industry\obj\Debug\AK_Industry.csproj.AssemblyReference.cache
 C:\Users\Fleurety\Desktop\rw\AK_Industry\AK_Industry\bin\Debug\LivelyRim.dll
 C:\Users\Fleurety\Desktop\rw\AK_Industry\AK_Industry\bin\Debug\FSUI.dll
 C:\Users\Fleurety\Desktop\rw\AK_Industry\AK_Industry\bin\Debug\CubismRim.dll
@@ -55,3 +54,4 @@ C:\Users\Fleurety\Desktop\rw\AK_Industry\AK_Industry\bin\Debug\LitJSON.dll
 C:\Users\Fleurety\Desktop\rw\AK_Industry\AK_Industry\bin\Debug\CubismRimAddon.dll
 C:\Users\Fleurety\Desktop\rw\AK_Industry\AK_Industry\bin\Debug\UnityEngine.JSONSerializeModule.dll
 C:\Users\Fleurety\Desktop\rw\AK_Industry\AK_Industry\bin\Debug\LivelyRim.pdb
+C:\Users\Fleurety\Desktop\rw\AK_Industry\AK_Industry\obj\Debug\AK_Industry.csproj.AssemblyReference.cache
