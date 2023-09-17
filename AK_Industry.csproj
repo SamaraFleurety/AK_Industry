@@ -105,30 +105,33 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AI\JobDriver\JobDriver_CleanOrgDust.cs" />
+    <Compile Include="AI\MapComp_LocalAvoidGrid.cs" />
     <Compile Include="AI\WorkGiver\WorkGiver_CleanOrgDust.cs" />
+    <Compile Include="AKI_Tool.cs" />
+    <Compile Include="Comp\ThingComp\TC_UseEffect_AddMemory.cs" />
     <Compile Include="GasSystem\Thing\Comp\TCP_GasEmitter.cs" />
     <Compile Include="GasSystem\Thing\Comp\TC_GasEmitter.cs" />
     <Compile Include="GasSystem\Thing\Def\Gas.cs" />
     <Compile Include="GasSystem\Thing\Def\GasDef.cs" />
+    <Compile Include="Harmony\PatchAvoidGrid.cs" />
     <Compile Include="Harmony\PatchMain.cs" />
+    <Compile Include="Comp\HediffComp\HCP_InflictDamageOvertime.cs" />
     <Compile Include="MathFunction\Func_OrgBloodCauseCrystal.cs" />
     <Compile Include="MathFunction\Func_OrgDustToOrgBlood.cs" />
     <Compile Include="MathFunction\MathFunctionBase.cs" />
+    <Compile Include="ModSettings.cs" />
     <Compile Include="Module\GasEmitter.cs" />
     <Compile Include="Oripathy\Complication\HC_DazeMe.cs" />
     <Compile Include="Oripathy\Complication\HC_DecreaseSkills.cs" />
-    <Compile Include="Oripathy\HediffComp\HC_AddHediff.cs" />
     <Compile Include="Oripathy\HediffComp\HC_LatentCrystal.cs" />
     <Compile Include="Oripathy\HediffComp\HC_OripathyInfo.cs" />
     <Compile Include="Oripathy\HediffComp\HC_RandAddHediff.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ThingComp\TC_OripathyMonitor.cs" />
-    <Compile Include="ThingComp\TC_ReactorOC.cs" />
-    <Compile Include="ThingComp\TC_UseEffect_CleanOrgDust.cs" />
+    <Compile Include="Comp\ThingComp\TC_OripathyMonitor.cs" />
+    <Compile Include="Comp\ThingComp\TC_ReactorOC.cs" />
+    <Compile Include="Comp\ThingComp\TC_UseEffect_CleanOrgDust.cs" />
     <Compile Include="TypeDef.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="HediffComp\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

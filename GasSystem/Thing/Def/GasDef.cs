@@ -12,7 +12,7 @@ namespace AK_Industry
 
 		public float hediffSeverity = 0.05f;
 
-		public int interval = 1;
+		public int interval = 1;	//施加Hediff的间隔(tick) 需要乘以tick本身间隔(rare/long)
 
 		public bool ignoreAnimals;
 
@@ -25,5 +25,7 @@ namespace AK_Industry
 		//public bool ignoreToxicSensitivity;
 
 		public StatDef resistedBy = StatDefOf.ToxicResistance;
+
+		public bool isDanger = true;
 	}
 }

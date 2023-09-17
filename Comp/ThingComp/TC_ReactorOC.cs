@@ -34,11 +34,18 @@ namespace AK_Industry
 
         int PowerOffset => ExactProps.powerOCOffset;
 
-        /*public override void PostSpawnSetup(bool respawningAfterLoad)
+        TC_GasEmitter GasEmitter => parent.GetComp<TC_GasEmitter>();
+
+        public override void PostSpawnSetup(bool respawningAfterLoad)
         {
             base.PostSpawnSetup(respawningAfterLoad);
-            //读档后发电量修复
-        }*/
+            GasEmitter.manualSwitch = overrided;
+        }
+
+        public override void CompTick()
+        {
+            base.CompTick();
+        }
 
         public override void PostExposeData()
         {
@@ -56,6 +63,7 @@ namespace AK_Industry
                 action = delegate ()
                 {
                     overrided = !overrided;
+                    GasEmitter.manualSwitch = true;
                 }
             };
         }
@@ -65,7 +73,16 @@ namespace AK_Industry
             base.UpdateDesiredPowerOutput();
             if(PowerOutput != 0f)
             {
-                if (overrided) PowerOutput += PowerOffset;
+                if (overrided)
+                {
+                    PowerOutput += PowerOffset;
+                    GasEmitter.manualSwitch = true;
+                }
+                else GasEmitter.manualSwitch = false;
+            }
+            else
+            {
+                GasEmitter.manualSwitch = false;
             }
         }
     }

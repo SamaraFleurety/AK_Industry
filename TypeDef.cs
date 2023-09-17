@@ -22,6 +22,7 @@ namespace AK_Industry
         public static HediffDef AKI_Hediff_OrgDust;
 
         public static ThingDef AKI_Item_CleaningKit;
+        public static ThingDef AKI_Item_CleaningKitFloral;
 
         public static JobDef AKI_Job_CleanOrgDust;
     }

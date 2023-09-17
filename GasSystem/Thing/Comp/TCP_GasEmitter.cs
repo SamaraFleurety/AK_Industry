@@ -9,11 +9,11 @@ namespace AK_Industry
 {
 	public class TCP_GasEmitter : CompProperties
 	{
-		public int intervel = 1;
+		public int interval = 1;
 
 		public float areaFillRadius = 3.5f;
 
-		public ThingDef gasType;
+		public GasDef gasDef;
 
 		public int countOfThingsToSpawnPerCell = 1;
 

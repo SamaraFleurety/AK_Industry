@@ -14,7 +14,10 @@ namespace AK_Industry
 			}
 		}
 
-		public override void SpawnSetup(Map map, bool respawningAfterLoad)
+		public int Interval => Def.interval;
+
+
+		/*public override void SpawnSetup(Map map, bool respawningAfterLoad)
 		{
 			base.SpawnSetup(map, respawningAfterLoad);
 			if (this.Def.interval > 0)
@@ -22,7 +25,7 @@ namespace AK_Industry
 				this.interval = this.Def.interval;
 			}
 			this.tickCounter = this.interval;
-		}
+		}*/
 
 		public override void Tick()
 		{
@@ -31,11 +34,11 @@ namespace AK_Industry
 				return;
 			}
 			base.Tick();
-			this.tickCounter--;
-			if (this.tickCounter <= 0)
+			++tickCounter;
+			if (this.tickCounter >= Interval)
 			{
 				this.ApplyHediff();
-				this.tickCounter = this.interval;
+				this.tickCounter = 0;
 			}
 		}
 
@@ -103,6 +106,5 @@ namespace AK_Industry
 
 		private int tickCounter = 30;
 
-		private int interval = 30;
 	}
 }

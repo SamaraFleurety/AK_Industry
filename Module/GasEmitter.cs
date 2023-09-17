@@ -46,23 +46,28 @@ namespace AK_Industry.Module
 			return affectedCells;
 		}
 
-		public static void DoSpawnCycle(List<IntVec3> affectedCells, ThingDef gasType, int spawnPerCell ,Map map)
+		public static void DoSpawnCycle(List<IntVec3> affectedCells, GasDef gasDef, int spawnPerCell ,Map map)
 		{
-			if (affectedCells == null || affectedCells.Count < 1 || gasType == null)
+			if (affectedCells == null || affectedCells.Count < 1 || gasDef == null || map == null)
 			{
 				return;
 			}
+			MapComp_AvoidGrid localAG = map.GetLocalAvoidGrid();
 			for (int i = 0; i < affectedCells.Count; i++)
 			{
 				Thing thing = ThingMaker.MakeThing(ThingDefOf.Mote_Stun, null);
 				IntVec3 intVec = affectedCells[i];
-				if (!DoesCellContain(intVec, map, gasType))
+				if (!DoesCellContain(intVec, map, gasDef))
 				{
-					thing = ThingMaker.MakeThing(gasType, null);
+					thing = ThingMaker.MakeThing(gasDef, null);
 					thing.stackCount = spawnPerCell;
 					if (!thing.Spawned)
 					{
 						GenSpawn.Spawn(thing, intVec, map, 0);
+						if (AKI_ModSettings.autoAvoidDangerGas && gasDef.isDanger)
+                        {
+							localAG.UpdateOriginiumDustCellAt(intVec);
+						}
 					}
 				}
 			}

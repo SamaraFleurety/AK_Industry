@@ -8,6 +8,8 @@ namespace AK_Industry
 {
 	public class TC_GasEmitter : ThingComp
 	{
+		public bool manualSwitch = true;
+
 		private TCP_GasEmitter ExactProps
 		{
 			get
@@ -18,7 +20,7 @@ namespace AK_Industry
 
 		public override void CompTick()
 		{
-			Log.Error("源石尘组件不应该使用normal tickertype");
+			CompTickRare();
 		}
 
 		public override void CompTickRare()
@@ -27,11 +29,11 @@ namespace AK_Industry
 			this.updateRegionIntervel--;
 			if (this.updateRegionIntervel <= 0)
 			{
-				updateRegionIntervel = ExactProps.intervel;
-				if (lowerThanHPThreshold())
+				updateRegionIntervel = ExactProps.interval;
+				if (shouldSpawnGas())
                 {
 					affectedCells = MGasEmitter.ScanArea(base.parent.Position, base.parent.Map, this.ExactProps.areaFillRadius);
-					MGasEmitter.DoSpawnCycle(this.affectedCells, ExactProps.gasType, ExactProps.countOfThingsToSpawnPerCell, base.parent.Map);
+					MGasEmitter.DoSpawnCycle(this.affectedCells, ExactProps.gasDef, ExactProps.countOfThingsToSpawnPerCell, base.parent.Map);
 				}
 				//this.ScanArea(base.parent.Position, base.parent.Map, this.ExactProps.areaFillRadius);
 			}
@@ -41,25 +43,26 @@ namespace AK_Industry
 		{
 			CompTickRare();
 		}
-		/*private void PulseThisTick()
-		{
-			this.updateRegionIntervel = this.ExactProps.ticksBetweenPulse;
-			if (this.updateArea)
-			{
-				this.ScanArea(base.parent.Position, base.parent.Map, this.ExactProps.areaFillRadius);
-			}
-			this.updateArea = !this.updateArea;
-			this.DoSpawnCycle(this.cellsInArea);
-		}*/
+
+		private bool shouldSpawnGas()
+        {
+			if (!manualSwitch || !lowerThanHPThreshold()) return false;
+			return true;
+        }
 
 		public bool lowerThanHPThreshold()
         {
 			if ((float)parent.HitPoints / (float)parent.MaxHitPoints <= ExactProps.HPThreshold) return true;
 			return false;
         }
-		
 
-		private List<IntVec3> affectedCells = new List<IntVec3>();
+        public override void PostExposeData()
+        {
+            base.PostExposeData();
+			Scribe_Values.Look(ref manualSwitch, "open", true);
+        }
+
+        private List<IntVec3> affectedCells = new List<IntVec3>();
 
 		private int updateRegionIntervel = 0;
 
