@@ -130,6 +130,7 @@
     <Compile Include="Oripathy\HediffComp\HC_LatentCrystal.cs" />
     <Compile Include="Oripathy\HediffComp\HC_OripathyInfo.cs" />
     <Compile Include="Oripathy\HediffComp\HC_RandAddHediff.cs" />
+    <Compile Include="Oripathy\RecipeWorker_ExtractLimbOriginium.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Comp\ThingComp\TC_OripathyMonitor.cs" />
     <Compile Include="Comp\ThingComp\TC_ReactorOC.cs" />

@@ -195,7 +195,7 @@ namespace AK_Industry
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
             base.PostSpawnSetup(respawningAfterLoad);
-            CompGasEmiiter.manualSwitch = Occupied;
+            SwitchGasEmitter(Occupied);
         }
 
         public override void PostDestroy(DestroyMode mode, Map previousMap)

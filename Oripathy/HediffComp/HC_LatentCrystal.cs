@@ -30,7 +30,7 @@ namespace AK_Industry
             //激发结晶
             if (rd <= transcendChance * 100)
             {
-                Log.Message($"激发 at {parent.Part.Label}");
+                //Log.Message($"激发 at {parent.Part.Label}");
                 AbilityEffect_AddHediff.AddHediff(this.Pawn, AKIDefOf.AKI_Hediff_OripathyCrystalLethal, def, record, severity: -10); 
                 AbilityEffect_AddHediff.AddHediff(this.Pawn, AKIDefOf.AKI_Hediff_OripathyCrystal, def, record, severity: -10);
                 AbilityEffect_AddHediff.AddHediff(this.Pawn, AKIDefOf.AKI_Hediff_OripathyCrystalTrans, def, record, severity: 1);
