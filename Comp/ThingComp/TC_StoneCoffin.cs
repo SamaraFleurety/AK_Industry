@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AK_Industry.Comp.ThingComp
+namespace AK_Industry
 {
-    class TC_StoneCoffin
+    public class TC_StoneCoffin : TC_PurifyPod
     {
+        public override void EffectPostComplete()
+        {
+            //fixme:没写
+        }
     }
 }

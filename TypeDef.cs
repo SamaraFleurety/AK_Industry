@@ -20,10 +20,12 @@ namespace AK_Industry
         public static ThingDef AKI_Item_CleaningKit;
         public static ThingDef AKI_Item_CleaningKitFloral;
 
+        public static ThingDef AKI_Building_PurifyPod;
+
         public static JobDef AKI_Job_CleanOrgDust;
         public static JobDef AKI_Job_EnterPurifyPod;
 
-        public static ThoughtDef AKI_Thought_UsedPurifyPod;
-        public static ThoughtDef AKI_Thought_UsePurifyPodInterrupted;
+        //public static ThoughtDef AKI_Thought_UsedPurifyPod;
+        //public static ThoughtDef AKI_Thought_UsePurifyPodInterrupted;
     }
 }

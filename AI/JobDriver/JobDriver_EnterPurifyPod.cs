@@ -34,7 +34,7 @@ namespace AK_Industry
             this.FailOnForbidden(thingIndexPurifyPod);
             this.FailOn(delegate ()
             {
-                return compPurifyPod.Occupied;
+                return compPurifyPod.Occupied || !compPurifyPod.PowerOn;
             });
 
             //走到清洁舱处
@@ -55,8 +55,6 @@ namespace AK_Industry
 
             enter.defaultCompleteMode = ToilCompleteMode.Instant;
             yield return enter;
-            //yield return toil
-
         }
     }
 }

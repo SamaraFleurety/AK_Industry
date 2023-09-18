@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Verse;
 using RimWorld;
 using Verse.AI;
@@ -52,11 +49,19 @@ namespace AK_Industry
 
         private ThingOwner innerContainer;
 
-        private int currentCycleTicksRemaining;
-        private int currentCyclePowerCutTicks;
+        private int ticksRemaining;
+        private int ticksPowerCut;
 
 
-        public bool PowerOn => parent.TryGetComp<CompPowerTrader>().PowerOn;
+        public bool PowerOn
+        {
+            get
+            {
+                CompPowerTrader comp = parent.TryGetComp<CompPowerTrader>();
+                if (comp != null && !comp.PowerOn) return false;
+                return true;
+            }
+        }
 
         public bool Occupied => Occupant != null;
 
@@ -72,7 +77,7 @@ namespace AK_Industry
             }
         }
 
-        public TC_GasEmitter compGasEmiiter => parent.TryGetComp<TC_GasEmitter>();
+        public TC_GasEmitter CompGasEmiiter => parent.TryGetComp<TC_GasEmitter>();
 
         public TCP_PurifyPod Props => props as TCP_PurifyPod;
 
@@ -86,8 +91,10 @@ namespace AK_Industry
 
             if (flag) Find.Selector.Select(p, false, false);
 
-            currentCycleTicksRemaining = Props.cycleTick;
-            currentCyclePowerCutTicks = 0;
+            ticksRemaining = Props.cycleTick;
+            ticksPowerCut = 0;
+
+            SwitchGasEmitter(true);
 
             return true;
         }
@@ -99,8 +106,8 @@ namespace AK_Industry
             innerContainer.ThingOwnerTick();
             if (PowerOn)
             {
-                currentCycleTicksRemaining -= 1;
-                if (currentCycleTicksRemaining <= 0)
+                ticksRemaining -= 1;
+                if (ticksRemaining <= 0)
                 {
                     CycleCompleted();
                 }
@@ -108,25 +115,30 @@ namespace AK_Industry
             else
             {
                 //因为断电而没能洗完
-                currentCyclePowerCutTicks++;
-                if (currentCyclePowerCutTicks >= 600)
+                ticksPowerCut++;
+                if (ticksPowerCut >= 600)
                 {
-                    currentCyclePowerCutTicks = 0;
+                    ticksPowerCut = 0;
                     EjectContents(true);
                 }
             }
 
         }
 
+        public virtual void EffectPreComplete()
+        {
+            TC_UseEffect_CleanOrgDust.CleanOrgDust(Occupant);
+        }
+
         private void CycleCompleted()
         {
+            EffectPreComplete();
             EjectContents(false);
             EffectPostComplete();
         }
 
         public virtual void EffectPostComplete()
         {
-            TC_UseEffect_CleanOrgDust.CleanOrgDust(Occupant);
         }
 
         public void EjectContents(bool interrupted, Map destMap = null)
@@ -145,6 +157,13 @@ namespace AK_Industry
                     else if (Props.thoughtComplete != null) p.needs.mood.thoughts.memories.TryGainMemory(Props.thoughtComplete);
                 }
             }
+            SwitchGasEmitter(false);
+        }
+
+        private void SwitchGasEmitter(bool target)
+        {
+            if (CompGasEmiiter == null) return;
+            CompGasEmiiter.manualSwitch = target;
         }
 
         public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selPawn)
@@ -173,6 +192,12 @@ namespace AK_Industry
             yield return new FloatMenuOption(failMessage, null, MenuOptionPriority.Default, null, null, 0f, null, null, true, 0); yield break;
         }
 
+        public override void PostSpawnSetup(bool respawningAfterLoad)
+        {
+            base.PostSpawnSetup(respawningAfterLoad);
+            CompGasEmiiter.manualSwitch = Occupied;
+        }
+
         public override void PostDestroy(DestroyMode mode, Map previousMap)
         {
             if (mode == DestroyMode.Deconstruct || mode == DestroyMode.KillFinalize)
@@ -188,5 +213,12 @@ namespace AK_Industry
             EjectContents(true, map);
         }
         public override void PostDraw() { }
+
+        public override void PostExposeData()
+        {
+            base.PostExposeData();
+            Scribe_Deep.Look(ref innerContainer, "innerContainer", this);
+            Scribe_Values.Look(ref ticksRemaining, "ticksRemaining", 0);
+        }
     }
 }
