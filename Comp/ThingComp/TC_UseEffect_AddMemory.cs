@@ -24,9 +24,7 @@ namespace AK_Industry
 
         public override void DoEffect(Pawn usedBy)
         {
-            Log.Message("de a");
             base.DoEffect(usedBy); //这还真不是空的
-            Log.Message("de b");
             if (usedBy.needs.mood != null) usedBy.needs.mood.thoughts.memories.TryGainMemory(Props.thoughtDef);
         }
     }

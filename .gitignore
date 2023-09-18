@@ -6,3 +6,4 @@ AK_DLL/AK_Library.csproj
 */bin/*
 */obj/*
 .vs/AK_Industry/v16/.suo
+*.cache

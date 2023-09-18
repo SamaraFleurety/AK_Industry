@@ -104,10 +104,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AI\JobDriver\JobDriver_CleanOrgDust.cs" />
+    <Compile Include="AI\JobDriver\JobDriver_EnterPurifyPod.cs" />
     <Compile Include="AI\MapComp_LocalAvoidGrid.cs" />
     <Compile Include="AI\WorkGiver\WorkGiver_CleanOrgDust.cs" />
     <Compile Include="AKI_Tool.cs" />
+    <Compile Include="Comp\ThingComp\TC_PurifyPod.cs" />
     <Compile Include="Comp\ThingComp\TC_UseEffect_AddMemory.cs" />
     <Compile Include="GasSystem\Thing\Comp\TCP_GasEmitter.cs" />
     <Compile Include="GasSystem\Thing\Comp\TC_GasEmitter.cs" />
@@ -116,6 +117,7 @@
     <Compile Include="Harmony\PatchAvoidGrid.cs" />
     <Compile Include="Harmony\PatchMain.cs" />
     <Compile Include="Comp\HediffComp\HCP_InflictDamageOvertime.cs" />
+    <Compile Include="Harmony\TestPatch.cs" />
     <Compile Include="MathFunction\Func_OrgBloodCauseCrystal.cs" />
     <Compile Include="MathFunction\Func_OrgDustToOrgBlood.cs" />
     <Compile Include="MathFunction\MathFunctionBase.cs" />

@@ -1,14 +1,9 @@
-﻿using RimWorld;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Verse;
+﻿using Verse;
+using RimWorld;
 
 namespace AK_Industry
 {
-    class TypeDef
+    public static class TypeDef
     {
     }
 
@@ -20,10 +15,15 @@ namespace AK_Industry
         public static HediffDef AKI_Hediff_OripathyCrystalTrans;
 
         public static HediffDef AKI_Hediff_OrgDust;
+        public static HediffDef AKI_Hediff_OrgDustActive;
 
         public static ThingDef AKI_Item_CleaningKit;
         public static ThingDef AKI_Item_CleaningKitFloral;
 
         public static JobDef AKI_Job_CleanOrgDust;
+        public static JobDef AKI_Job_EnterPurifyPod;
+
+        public static ThoughtDef AKI_Thought_UsedPurifyPod;
+        public static ThoughtDef AKI_Thought_UsePurifyPodInterrupted;
     }
 }

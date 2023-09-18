@@ -9,6 +9,7 @@ using UnityEngine;
 
 namespace AK_Industry 
 {
+    //Reactor Over Clocking 我嫌全称长
     public class TCP_ReactorOC : CompProperties_Power
     {
         public int powerOCOffset;

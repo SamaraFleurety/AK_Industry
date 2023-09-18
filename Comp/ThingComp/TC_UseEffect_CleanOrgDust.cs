@@ -21,7 +21,14 @@ namespace AK_Industry
         public override void DoEffect(Pawn usedBy)
         {
             base.DoEffect(usedBy);
-            Hediff h = usedBy.health.hediffSet.GetFirstHediffOfDef(AKIDefOf.AKI_Hediff_OrgDust);
+            CleanOrgDust(usedBy);
+        }
+
+        public static void CleanOrgDust(Pawn p)
+        {
+            Hediff h = p.health.hediffSet.GetFirstHediffOfDef(AKIDefOf.AKI_Hediff_OrgDust);
+            if (h != null) h.Severity -= 1000;
+            h = p.health.hediffSet.GetFirstHediffOfDef(AKIDefOf.AKI_Hediff_OrgDustActive);
             if (h != null) h.Severity -= 1000;
         }
     }
