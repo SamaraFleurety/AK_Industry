@@ -109,6 +109,7 @@
     <Compile Include="AI\WorkGiver\WorkGiver_CleanOrgDust.cs" />
     <Compile Include="AI\WorkGiver\WorkGiver_UsePurifyPod.cs" />
     <Compile Include="AKI_Tool.cs" />
+    <Compile Include="MiscThing\KohlBarrel\Building_KohlBarrel.cs" />
     <Compile Include="Comp\ThingComp\TC_PurifyPod.cs" />
     <Compile Include="Comp\ThingComp\TC_StoneCoffin.cs" />
     <Compile Include="Comp\ThingComp\TC_UseEffect_AddMemory.cs" />
@@ -123,6 +124,10 @@
     <Compile Include="MathFunction\Func_OrgBloodCauseCrystal.cs" />
     <Compile Include="MathFunction\Func_OrgDustToOrgBlood.cs" />
     <Compile Include="MathFunction\MathFunctionBase.cs" />
+    <Compile Include="MiscThing\KohlBarrel\JobDriver_FillKohlBarrel.cs" />
+    <Compile Include="MiscThing\KohlBarrel\JobDriver_HarvestKohlBarrel.cs" />
+    <Compile Include="MiscThing\KohlBarrel\WorkGiver_FillKohlBarrel.cs" />
+    <Compile Include="MiscThing\KohlBarrel\WorkGiver_HarvestKohlBarrel.cs" />
     <Compile Include="ModSettings.cs" />
     <Compile Include="Module\GasEmitter.cs" />
     <Compile Include="Oripathy\Complication\HC_DazeMe.cs" />

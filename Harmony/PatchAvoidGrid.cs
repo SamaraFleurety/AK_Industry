@@ -9,6 +9,7 @@ using RimWorld;
 
 namespace AK_Industry
 {
+    //己方也是用AG来避免踩源石尘
     [HarmonyPatch(typeof(PawnUtility), "GetAvoidGrid")]
     public class PatchAvoidGrid
     {

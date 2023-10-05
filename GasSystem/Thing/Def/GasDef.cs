@@ -6,7 +6,7 @@ namespace AK_Industry
 {
 	public class GasDef : ThingDef
 	{
-		public HediffDef addHediff;
+		public HediffDef addHediff = null;
 
 		public float hediffAddChance = 1f;
 

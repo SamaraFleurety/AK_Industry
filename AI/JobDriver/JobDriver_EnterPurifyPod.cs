@@ -8,7 +8,6 @@ using Verse.AI;
 
 namespace AK_Industry
 {
-    //没有使用
     public class JobDriver_EnterPurifyPod : JobDriver
     {
         TargetIndex thingIndexPurifyPod = TargetIndex.A;
