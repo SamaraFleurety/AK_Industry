@@ -55,3 +55,5 @@ C:\Users\Fleurety\Desktop\rw\AK_Industry\AK_Industry\bin\Debug\CubismRimAddon.dl
 C:\Users\Fleurety\Desktop\rw\AK_Industry\AK_Industry\bin\Debug\UnityEngine.JSONSerializeModule.dll
 C:\Users\Fleurety\Desktop\rw\AK_Industry\AK_Industry\bin\Debug\LivelyRim.pdb
 C:\Users\Fleurety\Desktop\rw\AK_Industry\AK_Industry\obj\Debug\AK_Industry.csproj.AssemblyReference.cache
+C:\Users\Fleurety\Desktop\rw\AK_Industry\AK_Industry\bin\Debug\AKA_Ability.dll
+C:\Users\Fleurety\Desktop\rw\AK_Industry\AK_Industry\bin\Debug\AKA_Ability.pdb

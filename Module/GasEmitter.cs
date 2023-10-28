@@ -7,14 +7,17 @@ namespace AK_Industry.Module
 {
     public static class MGasEmitter
     {
-		public static List<IntVec3> ScanArea(IntVec3 posistion, Map map, float areaFillRadius)
+		public static List<IntVec3> ScanArea(IntVec3 posistion, Map map, float areaFillRadius, RegionType filter = RegionType.Set_Passable)
 		{
 			List<IntVec3> affectedCells = new List<IntVec3>();
-			//this.affectedCells.Clear();
+
+			//起点不允许是空
 			if (!GenGrid.InBounds(posistion, map))
 			{
 				return null;
 			}
+
+			//起点可以不符合条件。这种情况下会从周围第一个合格的点开始扫描。
 			IntVec3[] nearLoc = new IntVec3[] { posistion, new IntVec3(posistion.x + 1, posistion.y, posistion.z), new IntVec3(posistion.x - 1, posistion.y, posistion.z), new IntVec3(posistion.x, posistion.y, posistion.z + 1), new IntVec3(posistion.x, posistion.y, posistion.z - 1) };
 			Region region = null;
 			for (int i = 0; i < 5; ++i)
@@ -25,14 +28,15 @@ namespace AK_Industry.Module
 					if (region != null) goto Find_Region;
 				}
 			}
+
+			//周围完全没有任何可能的区域
 			if (region == null)
 			{
 				return null;
 			}
 
 		Find_Region:
-			RegionTraverser.BreadthFirstTraverse(region, (Region from, Region traverseRegion) => traverseRegion.door == null, delegate
-				(Region targetRegion)
+			RegionTraverser.BreadthFirstTraverse(region, (Region from, Region traverseRegion) => traverseRegion.door == null, delegate (Region targetRegion)
 			{
 				foreach (IntVec3 item in targetRegion.Cells)
 				{
@@ -42,7 +46,7 @@ namespace AK_Industry.Module
 					}
 				}
 				return false;
-			}, 16, RegionType.Set_Passable);
+			}, 40, filter);
 			return affectedCells;
 		}
 

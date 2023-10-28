@@ -105,10 +105,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AI\JobDriver\JobDriver_EnterPurifyPod.cs" />
+    <Compile Include="MiscThing\LotteryMachine\JobDriver_UseLotteryMachine.cs" />
     <Compile Include="AI\MapComp_LocalAvoidGrid.cs" />
     <Compile Include="AI\WorkGiver\WorkGiver_CleanOrgDust.cs" />
     <Compile Include="AI\WorkGiver\WorkGiver_UsePurifyPod.cs" />
     <Compile Include="AKI_Tool.cs" />
+    <Compile Include="MiscThing\LotteryMachine\TCP_Lottery.cs" />
     <Compile Include="MiscThing\KohlBarrel\Building_KohlBarrel.cs" />
     <Compile Include="Comp\ThingComp\TC_PurifyPod.cs" />
     <Compile Include="Comp\ThingComp\TC_StoneCoffin.cs" />
@@ -130,8 +132,6 @@
     <Compile Include="MiscThing\KohlBarrel\WorkGiver_HarvestKohlBarrel.cs" />
     <Compile Include="ModSettings.cs" />
     <Compile Include="Module\GasEmitter.cs" />
-    <Compile Include="Oripathy\Complication\HC_DazeMe.cs" />
-    <Compile Include="Oripathy\Complication\HC_DecreaseSkills.cs" />
     <Compile Include="Oripathy\HediffComp\HC_LatentCrystal.cs" />
     <Compile Include="Oripathy\HediffComp\HC_OripathyInfo.cs" />
     <Compile Include="Oripathy\HediffComp\HC_RandAddHediff.cs" />

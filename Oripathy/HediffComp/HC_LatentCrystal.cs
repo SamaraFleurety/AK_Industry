@@ -31,21 +31,21 @@ namespace AK_Industry
             if (rd <= transcendChance * 100)
             {
                 //Log.Message($"激发 at {parent.Part.Label}");
-                AbilityEffect_AddHediff.AddHediff(this.Pawn, AKIDefOf.AKI_Hediff_OripathyCrystalLethal, def, record, severity: -10); 
-                AbilityEffect_AddHediff.AddHediff(this.Pawn, AKIDefOf.AKI_Hediff_OripathyCrystal, def, record, severity: -10);
-                AbilityEffect_AddHediff.AddHediff(this.Pawn, AKIDefOf.AKI_Hediff_OripathyCrystalTrans, def, record, severity: 1);
+                AbilityEffect_AddHediff.AddHediff(this.Pawn, AKIDefOf.AKI_Hediff_OripathyCrystalLethal, def, null, record, severity: -10); 
+                AbilityEffect_AddHediff.AddHediff(this.Pawn, AKIDefOf.AKI_Hediff_OripathyCrystal, def, null, record, severity: -10);
+                AbilityEffect_AddHediff.AddHediff(this.Pawn, AKIDefOf.AKI_Hediff_OripathyCrystalTrans, def, null, record, severity: 1);
             }
             else
             {
                 //致死结晶
                 if (def == BodyPartDefOf.Brain || def == BodyPartDefOf.Heart)
                 {
-                    AbilityEffect_AddHediff.AddHediff(this.Pawn, AKIDefOf.AKI_Hediff_OripathyCrystalLethal, def, record, severity: 1.1f);
+                    AbilityEffect_AddHediff.AddHediff(this.Pawn, AKIDefOf.AKI_Hediff_OripathyCrystalLethal, def, null, record, severity: 1.1f);
                 }
                 //不致死结晶
                 else
                 {
-                    AbilityEffect_AddHediff.AddHediff(this.Pawn, AKIDefOf.AKI_Hediff_OripathyCrystal, def, record, severity: 1.1f);
+                    AbilityEffect_AddHediff.AddHediff(this.Pawn, AKIDefOf.AKI_Hediff_OripathyCrystal, def, null, record, severity: 1.1f);
                 }
             }
         }

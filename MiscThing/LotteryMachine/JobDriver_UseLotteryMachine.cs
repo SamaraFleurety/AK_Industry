@@ -8,15 +8,14 @@ using Verse.AI;
 
 namespace AK_Industry
 {
-    public class JobDriver_EnterPurifyPod : JobDriver
+    public class JobDriver_UseLotteryMachine : JobDriver
     {
-        TargetIndex indexPurifyPod = TargetIndex.A;
-
-        private TC_PurifyPod compPurifyPod => job.targetA.Thing.TryGetComp<TC_PurifyPod>();
+        TargetIndex indexLotteryMachine = TargetIndex.A; 
+        private TC_Lottery compPurifyPod => job.targetA.Thing.TryGetComp<TC_Lottery>();
 
         public override string GetReport()
         {
-            return "正在清洁源石尘";
+            return "正在抽奖";
         }
 
         public override bool TryMakePreToilReservations(bool errorOnFailed)
@@ -29,19 +28,15 @@ namespace AK_Industry
 
         protected override IEnumerable<Toil> MakeNewToils()
         {
-            this.FailOnDespawnedOrNull(indexPurifyPod);
-            this.FailOnForbidden(indexPurifyPod);
-            this.FailOn(delegate ()
-            {
-                return compPurifyPod.Occupied || !compPurifyPod.PowerOn;
-            });
+            this.FailOnDespawnedOrNull(indexLotteryMachine);
+            this.FailOnForbidden(indexLotteryMachine);
 
             //走到清洁舱处
-            yield return Toils_Goto.GotoThing(indexPurifyPod, PathEndMode.InteractionCell);
+            yield return Toils_Goto.GotoThing(indexLotteryMachine, PathEndMode.InteractionCell);
 
-            Toil prepareToEnterToil = Toils_General.Wait(70);
-            prepareToEnterToil.FailOnCannotTouch(indexPurifyPod, PathEndMode.InteractionCell);
-            prepareToEnterToil.WithProgressBarToilDelay(indexPurifyPod);
+            Toil prepareToEnterToil = Toils_General.Wait(100);
+            prepareToEnterToil.FailOnCannotTouch(indexLotteryMachine, PathEndMode.InteractionCell);
+            prepareToEnterToil.WithProgressBarToilDelay(indexLotteryMachine);
             //prepareToEnterToil.play
 
             yield return prepareToEnterToil;
@@ -49,7 +44,7 @@ namespace AK_Industry
             Toil enter = ToilMaker.MakeToil();
             enter.initAction = delegate ()
             {
-                compPurifyPod.TryAcceptPawn(pawn);
+                compPurifyPod.LotteryGacha(pawn);
             };
 
             enter.defaultCompleteMode = ToilCompleteMode.Instant;
