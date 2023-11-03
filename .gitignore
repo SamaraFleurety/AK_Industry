@@ -1,9 +1,12 @@
 
-.vs
-*.cache
-*/packages/*
-AK_DLL/AK_Library.csproj
+*.rar
+*.lnk
+__*
+*.bat
 */bin/*
-*/obj/*
-.vs/AK_Industry/v16/.suo
+*.suo
 *.cache
+*.pdb
+.vs
+*/packages/*
+*/obj/*
