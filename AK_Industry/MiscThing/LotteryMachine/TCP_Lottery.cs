@@ -13,6 +13,7 @@ namespace AK_Industry
     public class LotteryCandidate : ItemOnSpawn
     {
         public int weight = 1;
+        public PawnKindDef pawn;
     }
 
     public class TCP_Lottery : CompProperties
@@ -25,6 +26,8 @@ namespace AK_Industry
         public List<LotteryCandidate> candidate = new List<LotteryCandidate>();
 
         public int cost = 1;
+
+        public EffecterDef effecterDef;
     }
 
     public class TC_Lottery : ThingComp
@@ -67,14 +70,28 @@ namespace AK_Industry
 
         public void LotteryGacha(Pawn p)
         {
+            if (this.Props.effecterDef != null)
+            {
+                Effecter effecter = new Effecter(this.Props.effecterDef);
+                effecter.Trigger(new TargetInfo(this.parent.Position, this.parent.Map, false), TargetInfo.Invalid, -1);
+                effecter.Cleanup();
+            }
             if (!arrayCached)
             {
                 CaculateLotteryWeightArray();
             }
             LotteryCandidate prize = Candidate[AK_Tool.weightArrayRand(weight)];
-            Thing thingPrize = ThingMaker.MakeThing(prize.item);
-            thingPrize.stackCount = prize.amount;
-            GenPlace.TryPlaceThing(thingPrize, parent.Position, ActualMap, ThingPlaceMode.Near);
+            if(prize.item != null)
+            {
+                Thing thingPrize = ThingMaker.MakeThing(prize.item);
+                thingPrize.stackCount = prize.amount;
+                GenPlace.TryPlaceThing(thingPrize, parent.Position, ActualMap, ThingPlaceMode.Near);
+            }
+            if(prize.pawn !=null)
+            {
+                Pawn pawnPrize = PawnGenerator.GeneratePawn(prize.pawn, Faction.OfPlayer);
+                GenSpawn.Spawn(pawnPrize, parent.Position, ActualMap);
+            }
             LotteryCost();
         }
 
