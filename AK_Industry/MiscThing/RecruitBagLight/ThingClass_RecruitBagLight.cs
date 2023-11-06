@@ -1,5 +1,6 @@
 ﻿using RimWorld;
 using System.Collections.Generic;
+using System.Reflection;
 using Verse;
 
 namespace AK_Industry
@@ -9,7 +10,31 @@ namespace AK_Industry
         public int lightStatus = 0;   //0是关闭，然后值越高稀有度越高
         private TC_RBLGlower CompGlower => this.GetComp<TC_RBLGlower>();
 
-        public override Graphic Graphic => base.Graphic;
+        private GraphicData actualGraphicData = null;
+
+        private string TexPathBase => "Things/Building/RecruitBagLamp";
+
+        private GraphicData ActualGraphicData
+        {
+            get
+            {
+                if (actualGraphicData == null)
+                {
+                    actualGraphicData = new GraphicData
+                    {
+                        graphicClass = this.def.graphicData.graphicClass,
+                        drawSize = this.def.graphicData.drawSize,
+                        shaderType = this.def.graphicData.shaderType
+                    };
+                }
+                actualGraphicData.texPath = TexPathBase + AK_DLL.TypeDef.romanNumber[lightStatus];
+                MethodInfo method = typeof(GraphicData).GetMethod("Init", BindingFlags.NonPublic | BindingFlags.Instance);
+                method.Invoke(actualGraphicData, new object[0]);
+                return actualGraphicData;
+            }
+        }
+
+        public override Graphic Graphic => ActualGraphicData.GraphicColoredFor(this);
 
         public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn selPawn)
         {
@@ -31,6 +56,7 @@ namespace AK_Industry
         {
             lightStatus = 0;
             Map.glowGrid.DeRegisterGlower(CompGlower);
+            if (Map != null) this.DirtyMapMesh(Map);
         }
 
         public void GachaSingle()
@@ -41,7 +67,7 @@ namespace AK_Industry
             else if (rd >= 40) lightStatus = 2;
             else lightStatus = 1;
             CompGlower.ChangeLightMode(lightStatus);
-            //Log.Message($"lights:{lightStatus}");
+            if (Map != null) this.DirtyMapMesh(Map);
         }
 
         public void GachaBuck()
@@ -53,6 +79,7 @@ namespace AK_Industry
             else if (rd >= 17) lightStatus = 2;
             else lightStatus = 1;
             CompGlower.ChangeLightMode(lightStatus);
+            if (Map != null) this.DirtyMapMesh(Map);
         }
 
         public override void ExposeData()

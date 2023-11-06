@@ -39,6 +39,8 @@ namespace AK_Industry
             Toil closeBag = ToilMaker.MakeToil();
             closeBag.initAction = thingBag.CloseBag;
 
+            yield return closeBag;
+
             if (job.targetB != null && job.targetC != null) yield break;
 
             Toil toilWait = Toils_General.Wait(100);
