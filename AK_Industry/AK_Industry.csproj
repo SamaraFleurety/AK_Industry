@@ -127,6 +127,9 @@
     <Compile Include="MiscThing\KohlBarrel\JobDriver_HarvestKohlBarrel.cs" />
     <Compile Include="MiscThing\KohlBarrel\WorkGiver_FillKohlBarrel.cs" />
     <Compile Include="MiscThing\KohlBarrel\WorkGiver_HarvestKohlBarrel.cs" />
+    <Compile Include="MiscThing\RecruitBagLight\JobDriver_UseRecruitBagLamp.cs" />
+    <Compile Include="MiscThing\RecruitBagLight\TCP_RBLGlower.cs" />
+    <Compile Include="MiscThing\RecruitBagLight\ThingClass_RecruitBagLight.cs" />
     <Compile Include="ModSettings.cs" />
     <Compile Include="Oripathy\HediffComp\HC_LatentCrystal.cs" />
     <Compile Include="Oripathy\HediffComp\HC_OripathyInfo.cs" />

@@ -34,12 +34,12 @@ namespace AK_Industry
             //走到清洁舱处
             yield return Toils_Goto.GotoThing(indexLotteryMachine, PathEndMode.InteractionCell);
 
-            Toil prepareToEnterToil = Toils_General.Wait(100);
-            prepareToEnterToil.FailOnCannotTouch(indexLotteryMachine, PathEndMode.InteractionCell);
-            prepareToEnterToil.WithProgressBarToilDelay(indexLotteryMachine);
+            Toil toilWait = Toils_General.Wait(100);
+            toilWait.FailOnCannotTouch(indexLotteryMachine, PathEndMode.InteractionCell);
+            toilWait.WithProgressBarToilDelay(indexLotteryMachine);
             //prepareToEnterToil.play
 
-            yield return prepareToEnterToil;
+            yield return toilWait;
 
             Toil enter = ToilMaker.MakeToil();
             enter.initAction = delegate ()

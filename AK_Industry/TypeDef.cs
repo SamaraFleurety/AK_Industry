@@ -36,6 +36,7 @@ namespace AK_Industry
         public static JobDef AKI_Job_HarvestKohlBarrel;
 
         public static JobDef AKI_Job_UseLotteryMachine;
+        public static JobDef AKI_Job_UseRecruitBagLamp;
         //public static ThoughtDef AKI_Thought_UsedPurifyPod;
         //public static ThoughtDef AKI_Thought_UsePurifyPodInterrupted;
     }
