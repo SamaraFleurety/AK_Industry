@@ -5,7 +5,7 @@ using Verse;
 
 namespace AK_Industry
 {
-    public class ThingClass_RecruitBagLight : ThingWithComps
+    public class ThingClass_RecruitBagLight : Building
     {
         public int lightStatus = 0;   //0是关闭，然后值越高稀有度越高
         private TC_RBLGlower CompGlower => this.GetComp<TC_RBLGlower>();
