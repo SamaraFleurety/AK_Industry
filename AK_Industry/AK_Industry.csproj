@@ -119,7 +119,6 @@
     <Compile Include="Comp\ThingComp\TC_UseEffect_AddMemory.cs" />
     <Compile Include="Harmony\PatchMain.cs" />
     <Compile Include="Comp\HediffComp\HCP_InflictDamageOvertime.cs" />
-    <Compile Include="Harmony\TestPatch.cs" />
     <Compile Include="MathFunction\Func_OrgBloodCauseCrystal.cs" />
     <Compile Include="MathFunction\Func_OrgDustToOrgBlood.cs" />
     <Compile Include="MathFunction\MathFunctionBase.cs" />

@@ -42,7 +42,6 @@ namespace AK_Industry
             Toil prepareToEnterToil = Toils_General.Wait(70);
             prepareToEnterToil.FailOnCannotTouch(indexPurifyPod, PathEndMode.InteractionCell);
             prepareToEnterToil.WithProgressBarToilDelay(indexPurifyPod);
-            //prepareToEnterToil.play
 
             yield return prepareToEnterToil;
 
